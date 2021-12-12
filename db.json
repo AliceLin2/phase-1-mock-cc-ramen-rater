@@ -39,6 +39,14 @@
       "image": "./assets/ramen/kojiro.jpg",
       "rating": 6,
       "comment": "Perfect for a cold night."
+    },
+    {
+      "name": "Lanzhou hand-pull noodle",
+      "restaurant": "Dun huang",
+      "image": "./assets/ramen/1.jpeg",
+      "rating": "6",
+      "comment": "Good for Chinese stomach",
+      "id": 6
     }
   ]
 }
