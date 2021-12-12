@@ -100,3 +100,10 @@ form h4 {
   color: white;
   background-color: black;
 }
+
+#edit-button, #delete-button {
+  width: 100px;
+  height: 30px;
+  color: white;
+  background-color: black;
+}

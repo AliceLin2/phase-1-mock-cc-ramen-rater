@@ -1,17 +1,61 @@
 // write your code here
 document.addEventListener('DOMContentLoaded',()=>{
-    fetchMenu()
+    let ramenId
+    let ramenIdArr = []
     const menu = document.querySelector('#ramen-menu')
     const allRamen = menu.getElementsByTagName('img')
     const form = document.querySelector('#new-ramen')
+    const breakLine = document.querySelector('br')
+    const editForm = document.querySelector('#edit-ramen')
+    const newDiv = document.createElement('div')
+    const editBtn = document.createElement('button')
+    const deleteBtn = document.createElement('button')
+    editBtn.id = 'edit-button'
+    editBtn.innerText = 'Edit'
+    deleteBtn.id = 'delete-button'
+    deleteBtn.innerText = 'Delete'
+    newDiv.append(editBtn, deleteBtn)
+    breakLine.after(newDiv)
+
+    editForm.style.display = "none"
+
+    fetchMenu()
+
+    setTimeout(()=>{
+        Array.from(allRamen).forEach((ramen)=>{
+            ramenIdArr.push(parseInt(ramen.id))
+        })
+        ramenDetail(Math.min(...ramenIdArr))
+    },200)
 
     setTimeout(()=>{
         Array.from(allRamen).forEach((ramen)=>{
             ramen.addEventListener('click',(e)=>{
-                ramenDetail(e.target.id)
+                ramenId = e.target.id
+                ramenDetail(ramenId)
             })
         })
     },500)
+
+    editBtn.addEventListener('click',(e)=>{
+        editForm.style.display = "block"
+    })
+
+    editForm.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        const newObj = {
+            'rating': editForm.elements['rating'].value,
+            'comment': editForm.elements['new-comment'].value
+        }
+        updateRamen(ramenId,newObj)
+        editForm.reset()
+        editForm.style.display = "none"
+    })
+
+    deleteBtn.addEventListener('click',(e)=>{
+        deleteRamen(ramenId)
+        location.reload()
+    })
 
     form.addEventListener('submit',(e)=>{
         e.preventDefault()
@@ -78,4 +122,36 @@ function postNewRamen(ramenObj){
     })
     .then(res => res.json())
     .then(data => data)
+}
+
+function updateRamen(id,newObj){
+    fetch(`http://localhost:3000/ramens/${id}`, {
+        method: 'PATCH',
+        headers:{
+            'Content-Type': 'application/json',
+            Accepter: 'application/json'
+        },
+        body: JSON.stringify(newObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+        const rating = document.querySelector('#rating-display')
+        const comment = document.querySelector('#comment-display')
+        rating.innerText = data.rating
+        comment.innerText = data.comment
+    })
+}
+
+function deleteRamen(id){
+    fetch(`http://localhost:3000/ramens/${id}`, {
+        method: 'DELETE',
+        headers:{
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        const detail = document.querySelector('#ramen-detail')
+        console.log(data)
+    })
 }

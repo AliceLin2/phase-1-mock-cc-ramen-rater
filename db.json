@@ -1,20 +1,12 @@
 {
   "ramens": [
     {
-      "id": 1,
-      "name": "Shoyu Ramen",
-      "restaurant": "Nonono",
-      "image": "./assets/ramen/shoyu.jpg",
-      "rating": 7,
-      "comment": "Delish. Can't go wrong with a classic!"
-    },
-    {
       "id": 2,
       "name": "Naruto Ramen",
       "restaurant": "Naruto",
       "image": "./assets/ramen/naruto.jpg",
-      "rating": 10,
-      "comment": "My absolute fave!"
+      "rating": "9",
+      "comment": "Very nice choice"
     },
     {
       "id": 3,
@@ -44,9 +36,25 @@
       "name": "Lanzhou hand-pull noodle",
       "restaurant": "Dun huang",
       "image": "./assets/ramen/1.jpeg",
-      "rating": "6",
+      "rating": "7",
       "comment": "Good for Chinese stomach",
       "id": 6
+    },
+    {
+      "name": "Braised beef noodle",
+      "restaurant": "Noodle Village",
+      "image": "./assets/ramen/2.jpg",
+      "rating": "6",
+      "comment": "Good!",
+      "id": 7
+    },
+    {
+      "name": "Shoyu Ramen",
+      "restaurant": "Nonono",
+      "image": "./assets/ramen/shoyu.jpg",
+      "rating": "7",
+      "comment": "Delish. Can't go wrong with a classic!",
+      "id": 8
     }
   ]
 }
